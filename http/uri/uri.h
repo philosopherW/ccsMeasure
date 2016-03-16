@@ -1,7 +1,7 @@
 // [RFC 3986] Uniform Resource Identifier (URI)
 
-#ifndef CCSMEASURE_URI_H_
-#define CCSMEASURE_URI_H_
+#ifndef CCSMEASURE_HTTP_URI_H_
+#define CCSMEASURE_HTTP_URI_H_
 
 #include <string>
 
@@ -44,7 +44,7 @@ std::string UriDecoding(const std::string &encoded);
 class Uri {
  public:
   Uri(std::string);
-  Uri(const char arg[]) : Uri(std::string(arg)) { }
+  Uri(const char *arg) : Uri(std::string(arg)) { }
   ~Uri() = default;
   Uri(const Uri &) = default;
   Uri &operator=(const Uri &) = default;
@@ -61,4 +61,4 @@ class Uri {
   std::string from_path;
 };
 
-#endif  // CCSMEASURE_URI_H_
+#endif  // CCSMEASURE_HTTP_URI_H_

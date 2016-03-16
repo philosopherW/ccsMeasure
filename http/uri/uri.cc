@@ -1,11 +1,8 @@
-// [RFC 3986] Uniform Resource Identifier (URI)
-
-// related header file
+// related
 #include "uri.h"
-// libraries
+// c/c++
 #include <ctype.h>
 #include <string>
-// my header files
 
 using std::string;
 
@@ -25,13 +22,13 @@ inline char Dig2Hex(int dig)
 //   '0' - '9' / 'a' - 'f' / 'A' - 'F'
 // return value
 //   0 - 15
-inline int Hex2Dig(char hex)
+static inline int Hex2Dig(char hex)
 {
   return (isdigit(hex) ? (hex - '0') : (toupper(hex) - 'A' + 10));
 }
 
 // 基于percent-encoding，将octet转化为character triplet
-inline string PctEncoding(char octet)
+static inline string PctEncoding(char octet)
 {
   return string("%") + Dig2Hex(octet/16) + Dig2Hex(octet%16);
 }
@@ -39,7 +36,7 @@ inline string PctEncoding(char octet)
 // 基于percent-encoding，将character triplet转化为octet
 // argument (do not check)
 //   "%" HEXDIG HEXDIG ; ABNF
-inline char PctDecoding(const string &str)
+static inline char PctDecoding(const string &str)
 {
   return Hex2Dig(str[1]) * 16 + Hex2Dig(str[2]);
 }
